@@ -3,12 +3,10 @@ package main.java;
 public class Attacks {
 
     private int race;
-    private int attackMode;
     private int damage;
 
-    public Attacks(int race, int attackMode) {
+    public Attacks(int race) {
         this.race = race;
-        this.attackMode = attackMode;
     }
 
     public void basicAttack(Players player){

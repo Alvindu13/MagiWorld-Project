@@ -26,24 +26,18 @@ public class IHM {
 
     public void choixCaracteristiques(Players player){
         Scanner sc = new Scanner(System.in);
-        int niveau;
-        int force;
-        int agilite;
-        int intelligence;
-
 
         System.out.println("Niveau du personnnage ?" );
-        niveau = sc.nextInt();
+        int niveau = sc.nextInt();
         player.setNiveau(niveau);
         player.setVitalite(niveau*5);
         player.setCapacitiesPoint(niveau);
-
 
         System.out.println("Vous avez " + player.getCapacitiesPoint() + " points à attribuer à vos caractéristiques : ");
 
 
         System.out.println("Force du personnnage ?" );
-        force = sc.nextInt();
+        int force = sc.nextInt();
         force = setCaract(force, player, ParamsCaracts.FORCE.getCaracteristique());
         player.setForce(force);
         player.setCapacitiesPoint(player.getCapacitiesPoint() - player.getForce());
@@ -51,7 +45,7 @@ public class IHM {
 
         if(player.getCapacitiesPoint() > 0) {
             System.out.println("Agilité du personnnage ?");
-            agilite = sc.nextInt();
+            int agilite = sc.nextInt();
             agilite = setCaract(agilite, player, ParamsCaracts.AGILITE.getCaracteristique());
             player.setAgilite(agilite);
             player.setCapacitiesPoint(player.getCapacitiesPoint() - player.getAgilite());
@@ -64,7 +58,7 @@ public class IHM {
 
         if(player.getCapacitiesPoint() > 0) {
             System.out.println("Intelligence du personnnage ?");
-            intelligence = sc.nextInt();
+            int intelligence = sc.nextInt();
             player.setIntelligence(intelligence);
         }
         else {
@@ -121,31 +115,18 @@ public class IHM {
                 System.out.println("Joueur 1 (" + player1.getVitalite() + " de vitalité)");
                 System.out.println("Veuillez choisir votre action ( 1 : Attaque Basique, 2 : Attaque Spéciale )");
                 int attackMode = sc.nextInt();
-                if(attackMode == 1){
-                    Attacks attacks = new Attacks(player1.getChooseRace(), attackMode);
-                    attacks.basicAttack(player1);
-                    attacks.lifeCalcul(player2);
-                } else if(attackMode == 2){
-                    Attacks attacks = new Attacks(player1.getChooseRace(), attackMode);
-                    attacks.specialAttack(player1);
-                    attacks.lifeCalcul(player2);
+                Attacks attacks = new Attacks(player1.getChooseRace());
+                attackPhase(attackMode, player1, attacks);
+                attacks.lifeCalcul(player2);
 
-                }
             } else {
                 System.out.println("Joueur 2 (" + player2.getVitalite() + " de vitalité)");
                 System.out.println("Veuillez choisir votre action ( 1 : Attaque Basique, 2 : Attaque Spéciale)");
                 int attackMode = sc.nextInt();
-                if(attackMode == 1){
-                    Attacks attacks = new Attacks(player2.getChooseRace(), attackMode);
-                    attacks.basicAttack(player2);
-                    attacks.lifeCalcul(player1);
-                } else if(attackMode == 2){
-                    Attacks attacks = new Attacks(player2.getChooseRace(), attackMode);
-                    attacks.specialAttack(player2);
+                    Attacks attacks = new Attacks(player2.getChooseRace());
+                    attackPhase(attackMode, player2, attacks);
                     attacks.lifeCalcul(player1);
                 }
-
-            }
             number++;
         } while(player1.getVitalite() > 0 && player2.getVitalite() > 0);
         if(player1.getVitalite() <= 0){
@@ -155,4 +136,15 @@ public class IHM {
         }
 
     }
+
+
+    public void attackPhase(int attackMode, Players player, Attacks attacks) {
+
+        if (attackMode == 1) {
+            attacks.basicAttack(player);
+        } else if (attackMode == 2) {
+            attacks.specialAttack(player);
+        }
+    }
+
 }
