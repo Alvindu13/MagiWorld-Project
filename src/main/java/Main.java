@@ -14,6 +14,7 @@ public class Main {
         ihm.choixCaracteristiques(player1);
         ihm.recap(player1);
 
+
         System.out.println("Création du personnage du Joueur 2");
         Players player2 = new Players();
 

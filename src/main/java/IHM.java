@@ -1,11 +1,13 @@
 package main.java;
 
+import com.sun.javafx.tools.packager.Param;
+
 import java.util.Scanner;
 
 public class IHM {
 
     public void choixRace(Players player){
-        System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage" );
+        System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage)" );
         Scanner sc = new Scanner(System.in);
         int raceInt = sc.nextInt();
         player.setChooseRace(raceInt);
@@ -34,13 +36,39 @@ public class IHM {
     }
 
     public void recap(Players player){
-       if(player.getChooseRace() == 1){
-           System.out.println("Wouarg, je  suis le guerrier Joueur "
-                   + player.getPlayerNumber() + "Je possède "
-                   + player.getVitalite() + " de vitalité,"
-                   + player.getForce() + " de force, "
-                   + player.getAgilite() + " d'agilité, "
-                   + player.getIntelligence() + " d'intelligence !");
-       }
+
+        if(player.getChooseRace() == 1){
+
+           content(Params.GUERRIER.getRace(), player);
+
+        } else if(player.getChooseRace() == 2) {
+
+            content(Params.RODEUR.getRace(), player);
+
+        } else if(player.getChooseRace() == 3) {
+
+            content(Params.MAGE.getRace(), player);
+
+        }
+    }
+
+
+    public void content(String params, Players player){
+        if(params.equals("Guerrier")){
+            System.out.print("Wouarg, je  suis le " + params + " Joueur ");
+        }
+        else if(params.equals("Rôdeur")){
+            System.out.print("ZzzzZzz, je  suis le " + params + " Joueur ");
+        }
+        else if(params.equals("Mage")){
+            System.out.print("Abracadabra, je  suis le " + params + " Joueur ");
+        }
+
+        System.out.println(
+                + player.getPlayerNumber() + ". Je possède "
+                + player.getVitalite() + " de vitalité, "
+                + player.getForce() + " de force, "
+                + player.getAgilite() + " d'agilité, et "
+                + player.getIntelligence() + " d'intelligence !");
     }
 }
