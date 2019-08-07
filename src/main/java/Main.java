@@ -24,5 +24,7 @@ public class Main {
         ihm.choixCaracteristiques(player2);
         ihm.recap(player2);
 
+        ihm.attackMode(player1, player2);
+
     }
 }

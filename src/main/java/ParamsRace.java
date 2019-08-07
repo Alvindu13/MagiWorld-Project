@@ -1,13 +1,13 @@
 package main.java;
 
-public enum Params {
+public enum ParamsRace {
     RODEUR("Rôdeur"),
     GUERRIER("Guerrier"),
     MAGE("Mage");
 
     private String race = "";
 
-    Params(String race) {
+    ParamsRace(String race) {
         this.race = race;
     }
 
@@ -21,7 +21,7 @@ public enum Params {
 
     @Override
     public String toString() {
-        return "Params{" +
+        return "ParamsRace{" +
                 "race='" + race + '\'' +
                 '}';
     }

@@ -10,6 +10,7 @@ public class Players {
     private int vitalite;
     private int chooseRace;
     private int playerNumber;
+    private int capacitiesPoint;
 
     public Players() {
     }
@@ -68,6 +69,14 @@ public class Players {
 
     public void setPlayerNumber(int playerNumber) {
         this.playerNumber = playerNumber;
+    }
+
+    public int getCapacitiesPoint() {
+        return capacitiesPoint;
+    }
+
+    public void setCapacitiesPoint(int capacitiesPoint) {
+        this.capacitiesPoint = capacitiesPoint;
     }
 
     @Override
