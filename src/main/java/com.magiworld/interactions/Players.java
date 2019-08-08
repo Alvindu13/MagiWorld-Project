@@ -1,7 +1,6 @@
-package com.magiworld;
+package com.magiworld.interactions;
 
 public class Players {
-
 
     private int niveau;
     private int force = 0;

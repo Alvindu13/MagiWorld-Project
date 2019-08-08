@@ -1,6 +1,7 @@
-package com.magiworld;
+package com.magiworld.Params;
 
 public enum ParamsRace {
+
     RODEUR("Rôdeur"),
     GUERRIER("Guerrier"),
     MAGE("Mage");

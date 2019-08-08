@@ -1,8 +1,14 @@
-package com.magiworld;
+package com.magiworld.base;
+
+import com.magiworld.interactions.IHM;
+import com.magiworld.interactions.Players;
 
 public class BasePlay {
 
 
+    /**
+     * Methode qui permet de lancer le jeu
+     */
     public void startPlay(){
         IHM ihm = new IHM();
 

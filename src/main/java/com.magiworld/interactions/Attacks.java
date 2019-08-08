@@ -1,4 +1,4 @@
-package com.magiworld;
+package com.magiworld.interactions;
 
 public class Attacks {
 
@@ -9,6 +9,10 @@ public class Attacks {
         this.race = race;
     }
 
+    /**
+     * Attaque basique
+     * @param player
+     */
     public void basicAttack(Players player){
         if(race == 1){
             System.out.println("Joueur " + player.getPlayerNumber() + " utilise Coup d'Épée et inflige " + player.getForce() + " dommages");
@@ -25,6 +29,10 @@ public class Attacks {
 
     }
 
+    /**
+     * Attaque spéciale
+     * @param player
+     */
     public void specialAttack(Players player){
         if(race == 1){
             System.out.println("Joueur " + player.getPlayerNumber() + " utilise Coup de Rage et inflige " + player.getForce()*2 + " dommages mais perd " + player.getForce()/2 + " de dommages propres.");
@@ -50,6 +58,10 @@ public class Attacks {
         }
     }
 
+    /**
+     * Calcul des dommages infligés
+     * @param player
+     */
     public void lifeCalcul(Players player){
         if(damage == 0){
             System.out.println("Joueur " + player.getPlayerNumber() + " n'a subit aucun dommage.");

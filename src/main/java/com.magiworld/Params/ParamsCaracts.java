@@ -1,12 +1,10 @@
-package com.magiworld;
+package com.magiworld.Params;
 
 public enum ParamsCaracts {
 
     FORCE("Force"),
     AGILITE("Agilité"),
     INTELLIGENCE("Intelligence");
-
-
 
     private String caracteristique = "";
 
