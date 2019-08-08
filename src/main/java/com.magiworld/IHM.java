@@ -1,17 +1,19 @@
-package main.java;
+package com.magiworld;
+
 import java.util.Scanner;
 
 public class IHM {
 
+    Scanner sc = new Scanner(System.in);
+
+
     public void choixRace(Players player){
         System.out.println("Veuillez choisir la classe de votre personnage (1 : Guerrier, 2 : Rôdeur, 3 : Mage)" );
-        Scanner sc = new Scanner(System.in);
         int raceInt = sc.nextInt();
         player.setChooseRace(raceInt);
     }
 
-    public int setCaract(int caract, Players player, String paramCaract) {
-        Scanner sc = new Scanner(System.in);
+    public int controlCaractsPoints(int caract, Players player, String paramCaract) {
         while (caract > player.getCapacitiesPoint()){
             System.out.println("Vous n'avez pas assez de points à attribuer, vous avez : " + player.getCapacitiesPoint() + " points restants");
             System.out.println(paramCaract + " du personnnage ?" );
@@ -20,52 +22,63 @@ public class IHM {
         return caract;
     }
 
-    public void messagePoints(Players player){
-        System.out.println("Il vous reste " + player.getCapacitiesPoint() + " points à attribuer à vos caractéristiques : ");
+    public void totalPointsRestants(Players player){
+        if(player.getCapacitiesPoint() > 0) {
+            System.out.println("Il vous reste " + player.getCapacitiesPoint() + " points à attribuer à vos caractéristiques : \n");
+        }
+        else if(player.getCapacitiesPoint() == 0){
+            System.out.println("Vous avez utilisé tous vos points. Vos caractéristiques restantes ont été fixées à 0.");
+        }
     }
 
     public void choixCaracteristiques(Players player){
-        Scanner sc = new Scanner(System.in);
 
         System.out.println("Niveau du personnnage ?" );
         int niveau = sc.nextInt();
         player.setNiveau(niveau);
         player.setVitalite(niveau*5);
-        player.setCapacitiesPoint(niveau);
-
-        System.out.println("Vous avez " + player.getCapacitiesPoint() + " points à attribuer à vos caractéristiques : ");
-
+        setCapacitiesPoints(player, "empty");
 
         System.out.println("Force du personnnage ?" );
         int force = sc.nextInt();
-        force = setCaract(force, player, ParamsCaracts.FORCE.getCaracteristique());
+        force = controlCaractsPoints(force, player, ParamsCaracts.FORCE.getCaracteristique());
         player.setForce(force);
-        player.setCapacitiesPoint(player.getCapacitiesPoint() - player.getForce());
-        messagePoints(player);
+        setCapacitiesPoints(player, ParamsCaracts.FORCE.getCaracteristique());
+        totalPointsRestants(player);
 
         if(player.getCapacitiesPoint() > 0) {
             System.out.println("Agilité du personnnage ?");
             int agilite = sc.nextInt();
-            agilite = setCaract(agilite, player, ParamsCaracts.AGILITE.getCaracteristique());
+            agilite = controlCaractsPoints(agilite, player, ParamsCaracts.AGILITE.getCaracteristique());
             player.setAgilite(agilite);
-            player.setCapacitiesPoint(player.getCapacitiesPoint() - player.getAgilite());
-            messagePoints(player);
-        }
-        else {
-            player.setAgilite(0);
-            System.out.println("Vous n'avez plus de points, votre agilité a été fixée à 0");
+            setCapacitiesPoints(player, ParamsCaracts.AGILITE.getCaracteristique());
+            totalPointsRestants(player);
         }
 
         if(player.getCapacitiesPoint() > 0) {
             System.out.println("Intelligence du personnnage ?");
             int intelligence = sc.nextInt();
+            intelligence = controlCaractsPoints(intelligence, player, ParamsCaracts.INTELLIGENCE.getCaracteristique());
             player.setIntelligence(intelligence);
         }
-        else {
-            player.setIntelligence(0);
-            System.out.println("Vous n'avez plus de points, votre intelligence a été fixée à 0");
-        }
+
     }
+
+
+    public void setCapacitiesPoints(Players player, String nameCaracts){
+
+        if(nameCaracts.equals("empty")){
+            player.setCapacitiesPoint(player.getNiveau());
+            System.out.println("Vous avez " + player.getCapacitiesPoint() + " points à attribuer à vos caractéristiques : \n");
+
+        } else if (nameCaracts.equals(ParamsCaracts.FORCE.getCaracteristique())){
+            player.setCapacitiesPoint(player.getCapacitiesPoint() - player.getForce());
+        } else if (nameCaracts.equals(ParamsCaracts.AGILITE.getCaracteristique())){
+        player.setCapacitiesPoint(player.getCapacitiesPoint() - player.getAgilite());
+        }
+
+    }
+
 
     public void recap(Players player){
 
@@ -87,26 +100,25 @@ public class IHM {
 
     public void content(String params, Players player){
         if(params.equals("Guerrier")){
-            System.out.print("Wouarg, je  suis le " + params + " Joueur ");
+            System.out.print("\n" + "Wouarg, je  suis le " + params + " Joueur ");
         }
         else if(params.equals("Rôdeur")){
-            System.out.print("ZzzzZzz, je  suis le " + params + " Joueur ");
+            System.out.print("\n" + "ZzzzZzz, je  suis le " + params + " Joueur ");
         }
         else if(params.equals("Mage")){
-            System.out.print("Abracadabra, je  suis le " + params + " Joueur ");
+            System.out.print("\n" + "Abracadabra, je  suis le " + params + " Joueur ");
         }
 
         System.out.println(
-                + player.getPlayerNumber() + ". Je possède "
-                + player.getVitalite() + " de vitalité, "
-                + player.getForce() + " de force, "
-                + player.getAgilite() + " d'agilité, et "
-                + player.getIntelligence() + " d'intelligence !");
+                + player.getPlayerNumber() + ". \n" + "Je possède : \n"
+                + player.getVitalite() + " de vitalité, \n"
+                + player.getForce() + " de force, \n"
+                + player.getAgilite() + " d'agilité, \n" + "et "
+                + player.getIntelligence() + " d'intelligence ! \n");
     }
 
 
     public void attackMode(Players player1, Players player2){
-        Scanner sc = new Scanner(System.in);
 
         int number = 0;
 
@@ -127,6 +139,7 @@ public class IHM {
                     attackPhase(attackMode, player2, attacks);
                     attacks.lifeCalcul(player1);
                 }
+
             number++;
         } while(player1.getVitalite() > 0 && player2.getVitalite() > 0);
         if(player1.getVitalite() <= 0){

@@ -1,8 +1,9 @@
-package main.java;
+package com.magiworld;
 
-public class Main {
+public class BasePlay {
 
-    public static void main(String[] args) {
+
+    public void startPlay(){
         IHM ihm = new IHM();
 
         System.out.println("Création du personnage du Joueur 1");
@@ -25,6 +26,6 @@ public class Main {
         ihm.recap(player2);
 
         ihm.attackMode(player1, player2);
-
     }
+
 }

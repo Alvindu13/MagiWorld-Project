@@ -1,12 +1,10 @@
-package main.java;
+package com.magiworld;
 
 public enum ParamsCaracts {
 
-    NIVEAU("Niveau"),
     FORCE("Force"),
     AGILITE("Agilité"),
-    INTELLIGENCE("Intelligence"),
-    VITALITE("Vitalité");
+    INTELLIGENCE("Intelligence");
 
 
 

@@ -1,4 +1,4 @@
-package main.java;
+package com.magiworld;
 
 public class Attacks {
 
@@ -30,6 +30,7 @@ public class Attacks {
             System.out.println("Joueur " + player.getPlayerNumber() + " utilise Coup de Rage et inflige " + player.getForce()*2 + " dommages mais perd " + player.getForce()/2 + " de dommages propres.");
             damage = player.getForce()*2;
             int damageReturn = player.getForce()/2;
+            System.out.println("Joueur " + player.getPlayerNumber() + " perd " + damageReturn + " points de vie.");
             player.setVitalite(player.getVitalite() - damageReturn);
         }
         else if(race == 2){

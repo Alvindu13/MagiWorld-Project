@@ -1,4 +1,4 @@
-package main.java;
+package com.magiworld;
 
 public enum ParamsRace {
     RODEUR("Rôdeur"),

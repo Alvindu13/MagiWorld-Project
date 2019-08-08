@@ -1,12 +1,12 @@
-package main.java;
+package com.magiworld;
 
 public class Players {
 
 
     private int niveau;
-    private int force;
-    private int agilite;
-    private int intelligence;
+    private int force = 0;
+    private int agilite = 0;
+    private int intelligence = 0;
     private int vitalite;
     private int chooseRace;
     private int playerNumber;
