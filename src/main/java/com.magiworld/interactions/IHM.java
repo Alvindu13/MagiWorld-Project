@@ -11,7 +11,7 @@ public class IHM {
 
     /**
      * Permet de contrôler si le joueur a suffisamment de points de caractéristiques à attribuer à telle caract
-     * @param caract caracteristiques injectées pour le contrôle en int pour les tests
+     * @param caract caracteristiques injectées pour le contrôle en int pour les tests (conditions)
      * @param player
      * @param paramCaract caracteristiques injectées pour le contrôle en String pour affichage dynamique
      * @return
